@@ -168,23 +168,56 @@ export const resources = {
   ],
 }
 
-export const gameExperience = [
+export interface GameAchievementStats {
+  unlocked: number
+  total: number
+}
+
+export interface GameExperienceItem {
+  title: string
+  platform: string
+  icon: string
+  description: string
+  playtimeHours?: number
+  progress?: number
+  achievements?: GameAchievementStats
+}
+
+export const gameExperience: GameExperienceItem[] = [
   {
     title: '\u751F\u5316\u5371\u673A2\u91CD\u5236\u7248',
     platform: 'PC\u6E38\u620F',
     icon: '/images/game-re2.png',
+    playtimeHours: 28.5,
+    progress: 72,
+    achievements: {
+      unlocked: 31,
+      total: 44,
+    },
     description: '\u7ECF\u5178\u751F\u5B58\u6050\u6016\u91CD\u5236\uFF0C\u5173\u6CE8\u5730\u56FE\u63A2\u7D22\u3001\u8D44\u6E90\u538B\u529B\u4E0E\u6C1B\u56F4\u8282\u594F\u3002',
   },
   {
     title: '\u751F\u5316\u5371\u673A3\u91CD\u5236\u7248',
     platform: 'PC\u6E38\u620F',
     icon: '/images/game-re3.png',
+    playtimeHours: 16.2,
+    progress: 58,
+    achievements: {
+      unlocked: 24,
+      total: 32,
+    },
     description: '\u66F4\u504F\u884C\u52A8\u5316\u7684\u91CD\u5236\u4F5C\uFF0C\u4F53\u9A8C\u8FFD\u9010\u538B\u8FEB\u611F\u548C\u7EBF\u6027\u5173\u5361\u8282\u594F\u3002',
   },
   {
     title: '\u751F\u5316\u5371\u673A4\u91CD\u5236\u7248',
     platform: 'PC\u6E38\u620F',
     icon: '/images/game-re4.png',
+    playtimeHours: 42.8,
+    progress: 84,
+    achievements: {
+      unlocked: 39,
+      total: 46,
+    },
     description: '\u5173\u6CE8\u7B2C\u4E09\u4EBA\u79F0\u6218\u6597\u624B\u611F\u3001\u7ECF\u6D4E\u6210\u957F\u548C\u7ECF\u5178\u5173\u5361\u73B0\u4EE3\u5316\u3002',
   },
   {
