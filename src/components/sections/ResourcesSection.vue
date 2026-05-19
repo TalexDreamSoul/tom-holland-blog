@@ -10,8 +10,8 @@ const iconMap = {
 </script>
 
 <template>
-  <section class="container-page border-t border-border py-18 md:py-24">
-    <div class="mb-10 max-w-3xl">
+  <section class="container-page border-t border-border py-18 md:py-24" data-motion="section">
+    <div class="mb-10 max-w-3xl" data-motion="section-heading">
       <p class="eyebrow">
         Portfolio
       </p>
@@ -25,9 +25,10 @@ const iconMap = {
         v-for="column in resources.columns"
         :key="column.title"
         :to="column.path"
-        class="group overflow-hidden border border-border rounded-[8px] bg-card shadow-soft focus-visible:h-focus transition-(colors transform) hover:bg-secondary/45 hover:-translate-y-1"
+        class="portfolio-pop-card wine-panel group overflow-hidden border rounded-[8px] focus-visible:h-focus transition-(colors transform) hover:-translate-y-1"
+        data-motion="card"
       >
-        <div class="border-b border-border bg-secondary/70 p-5">
+        <div class="wine-surface border-b p-5">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="eyebrow">
@@ -37,7 +38,7 @@ const iconMap = {
                 {{ column.title }}
               </h3>
             </div>
-            <div class="grid h-10 w-10 shrink-0 place-items-center rounded-[8px] bg-card text-primary">
+            <div class="wine-inset grid h-10 w-10 shrink-0 place-items-center border rounded-[8px] text-primary">
               <component :is="iconMap[column.icon as keyof typeof iconMap]" :size="18" />
             </div>
           </div>
@@ -46,7 +47,7 @@ const iconMap = {
         <div class="grid gap-5 p-5">
           <img
             v-if="column.gallery?.length"
-            class="aspect-[16/9] w-full border border-border rounded-[8px] object-cover"
+            class="wine-image-bright aspect-[16/9] w-full border border-primary/24 rounded-[8px] object-cover"
             :src="column.gallery[0]"
             :alt="`${column.title} preview`"
           >
@@ -54,7 +55,7 @@ const iconMap = {
             <div
               v-for="item in column.items.slice(0, 2)"
               :key="item.title"
-              class="border border-border rounded-[8px] bg-background/70 p-4"
+              class="wine-inset border rounded-[8px] p-4"
             >
               <AppBadge variant="outline">
                 {{ item.type }}
@@ -68,7 +69,7 @@ const iconMap = {
             </div>
           </div>
 
-          <div class="flex items-center justify-between gap-4 border-t border-border pt-4 text-sm text-muted-foreground font-700 group-hover:text-foreground">
+          <div class="flex items-center justify-between gap-4 border-t border-primary/18 pt-4 text-sm text-muted-foreground font-700 group-hover:text-foreground">
             <span>
               View details
             </span>

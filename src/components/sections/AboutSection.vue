@@ -4,8 +4,8 @@ import { profile } from '~/data/profile'
 </script>
 
 <template>
-  <section class="grid container-page gap-10 border-t border-border py-18 md:grid-cols-[0.9fr_1.1fr] md:py-24">
-    <div>
+  <section class="grid container-page gap-10 border-t border-border py-18 md:grid-cols-[0.9fr_1.1fr] md:py-24" data-motion="section">
+    <div data-motion="section-heading">
       <p class="eyebrow">
         About
       </p>
@@ -14,16 +14,16 @@ import { profile } from '~/data/profile'
       </h2>
     </div>
 
-    <div class="prose-copy grid gap-7 text-muted-foreground">
+    <div class="prose-copy grid gap-7 text-muted-foreground" data-motion="card">
       <p class="text-lg">
         {{ profile.bio }}
       </p>
       <div class="grid gap-3">
-        <div class="flex items-center gap-3 border border-border rounded-[8px] bg-card p-4">
+        <div class="wine-panel flex items-center gap-3 border rounded-[8px] p-4">
           <MapPin :size="18" class="text-primary" />
           <span>{{ profile.location }}</span>
         </div>
-        <div class="border border-border rounded-[8px] bg-card p-4">
+        <div class="wine-panel border rounded-[8px] p-4">
           {{ profile.availability }}
         </div>
       </div>

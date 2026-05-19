@@ -4,8 +4,8 @@ import { projects } from '~/data/profile'
 </script>
 
 <template>
-  <section class="container-page border-t border-border py-18 md:py-24">
-    <div class="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+  <section class="container-page border-t border-border py-18 md:py-24" data-motion="section">
+    <div class="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end" data-motion="section-heading">
       <div>
         <p class="eyebrow">
           Portfolio
@@ -25,6 +25,7 @@ import { projects } from '~/data/profile'
         v-for="project in projects"
         :key="project.title"
         :project="project"
+        data-motion="card"
       />
     </div>
   </section>

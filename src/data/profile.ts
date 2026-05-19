@@ -3,6 +3,7 @@ export const profile = {
   title: 'Designer, writer, and frontend maker',
   location: 'Shanghai / Remote',
   email: 'hello@tomholland.dev',
+  github: 'https://github.com/',
   availability: 'Open for thoughtful collaborations',
   intro:
     'I design quiet digital products, write about the craft behind them, and build polished interfaces that feel calm under pressure.',
@@ -176,59 +177,105 @@ export interface GameAchievementStats {
 export interface GameExperienceItem {
   title: string
   platform: string
-  icon: string
+  icon?: string
   description: string
   playtimeHours?: number
   progress?: number
   achievements?: GameAchievementStats
 }
 
+const PC_PLATFORM = 'PC\u6E38\u620F'
+const MOBILE_PLATFORM = '\u624B\u673A\u6E38\u620F'
+
+function createPcGame(title: string, playtimeHours: number, achievementsTuple?: [number, number]): GameExperienceItem {
+  const achievements = achievementsTuple
+    ? {
+        unlocked: achievementsTuple[0],
+        total: achievementsTuple[1],
+      }
+    : undefined
+
+  return {
+    title,
+    platform: PC_PLATFORM,
+    playtimeHours,
+    ...(achievements
+      ? {
+          progress: achievements.total > 0 ? Math.round((achievements.unlocked / achievements.total) * 100) : 0,
+          achievements,
+        }
+      : {}),
+    description: '',
+  }
+}
+
 export const gameExperience: GameExperienceItem[] = [
-  {
-    title: '\u751F\u5316\u5371\u673A2\u91CD\u5236\u7248',
-    platform: 'PC\u6E38\u620F',
-    icon: '/images/game-re2.png',
-    playtimeHours: 28.5,
-    progress: 72,
-    achievements: {
-      unlocked: 31,
-      total: 44,
-    },
-    description: '\u7ECF\u5178\u751F\u5B58\u6050\u6016\u91CD\u5236\uFF0C\u5173\u6CE8\u5730\u56FE\u63A2\u7D22\u3001\u8D44\u6E90\u538B\u529B\u4E0E\u6C1B\u56F4\u8282\u594F\u3002',
-  },
-  {
-    title: '\u751F\u5316\u5371\u673A3\u91CD\u5236\u7248',
-    platform: 'PC\u6E38\u620F',
-    icon: '/images/game-re3.png',
-    playtimeHours: 16.2,
-    progress: 58,
-    achievements: {
-      unlocked: 24,
-      total: 32,
-    },
-    description: '\u66F4\u504F\u884C\u52A8\u5316\u7684\u91CD\u5236\u4F5C\uFF0C\u4F53\u9A8C\u8FFD\u9010\u538B\u8FEB\u611F\u548C\u7EBF\u6027\u5173\u5361\u8282\u594F\u3002',
-  },
-  {
-    title: '\u751F\u5316\u5371\u673A4\u91CD\u5236\u7248',
-    platform: 'PC\u6E38\u620F',
-    icon: '/images/game-re4.png',
-    playtimeHours: 42.8,
-    progress: 84,
-    achievements: {
-      unlocked: 39,
-      total: 46,
-    },
-    description: '\u5173\u6CE8\u7B2C\u4E09\u4EBA\u79F0\u6218\u6597\u624B\u611F\u3001\u7ECF\u6D4E\u6210\u957F\u548C\u7ECF\u5178\u5173\u5361\u73B0\u4EE3\u5316\u3002',
-  },
+  createPcGame('\u661F\u9732\u8C37\u7269\u8BED', 106.1, [22, 49]),
+  createPcGame('\u6CF0\u62C9\u745E\u4E9A', 47.2, [80, 115]),
+  createPcGame('\u9ED1\u795E\u8BDD\uFF1A\u609F\u7A7A', 45.3, [81, 81]),
+  createPcGame('\u9E45\u9E2D\u6740', 45.1, [13, 38]),
+  createPcGame('CS2', 43.5, [1, 1]),
+  createPcGame('\u884C\u5C38\u8D70\u8089', 43.3, [19, 23]),
+  createPcGame('\u5BC2\u9759\u5CADf', 42.6, [56, 56]),
+  createPcGame('\u6740\u624B\uFF1A\u6697\u6740\u4E16\u754C', 41, [30, 83]),
+  createPcGame('\u970D\u683C\u6C83\u5179\u4E4B\u9057', 32.1, [26, 45]),
+  createPcGame('\u5947\u5F02\u4EBA\u751F', 29.5, [60, 60]),
+  createPcGame('\u751F\u5316\u5371\u673A2 \u91CD\u5236\u7248', 27.9, [28, 44]),
+  createPcGame('\u5BC2\u9759\u5CAD2', 27.5, [43, 43]),
+  createPcGame('\u65B0\u5F39\u4E38\u8BBA\u7834v3', 27.3, [19, 41]),
+  createPcGame('\u68EE\u6797', 26.2, [18, 45]),
+  createPcGame('\u751F\u5316\u5371\u673A9\uFF1A\u5B89\u9B42\u66F2', 25, [38, 49]),
+  createPcGame('\u5F39\u4E38\u8BBA\u7834', 22.9, [11, 38]),
+  createPcGame('\u751F\u5316\u5371\u673A4 \u91CD\u5236\u7248', 21.8, [17, 46]),
+  createPcGame('\u5F39\u4E38\u8BBA\u78342', 21.5, [11, 47]),
+  createPcGame('\u8336\u676F\u5934', 21.1, [25, 42]),
+  createPcGame('\u5947\u5F02\u4EBA\u751F\uFF1A\u66B4\u98CE\u524D\u5915', 19.8, [34, 34]),
+  createPcGame('\u5947\u5F02\u4EBA\u751F2', 19.6, [46, 46]),
+  createPcGame('\u751F\u5316\u5371\u673A6', 18.5, [20, 70]),
+  createPcGame('\u6076\u7075\u9644\u8EAB', 17.1, [19, 71]),
+  createPcGame('\u751F\u5316\u5371\u673A7', 17, [19, 58]),
+  createPcGame('\u53E4\u5893\u4E3D\u5F71', 16.6, [12, 50]),
+  createPcGame('\u751F\u5316\u5371\u673A3 \u91CD\u5236\u7248', 14.7, [20, 32]),
+  createPcGame('\u6076\u7075\u9644\u8EAB2', 14.1, [29, 51]),
+  createPcGame('\u53E4\u5893\u4E3D\u5F71\uFF1A\u5D1B\u8D77', 13.6, [33, 143]),
+  createPcGame('\u9ECE\u660E\u6740\u673A', 13.2, [25, 288]),
+  createPcGame('\u6211\u4EEC\u4E4B\u95F4', 13.1, [16, 33]),
+  createPcGame('\u8FD9\u662F\u6211\u7684\u6218\u4E89', 12.3, [20, 55]),
+  createPcGame('\u5E95\u7279\u5F8B\uFF1A\u5316\u8EAB\u4E3A\u4EBA', 11.4, [30, 48]),
+  createPcGame('\u53E4\u5893\u4E3D\u5F71\uFF1A\u6697\u5F71', 11.3, [32, 99]),
+  createPcGame('\u5F71\u5B50\u6218\u672F\uFF1A\u5C06\u519B\u4E4B\u5203', 10.2, [10, 44]),
+  createPcGame('\u66B4\u96E8', 9.5, [33, 56]),
+  createPcGame('\u7CD6\u8C46\u4EBA', 9.3, [14, 34]),
+  createPcGame('\u751F\u5316\u5371\u673A8\uFF1A\u6751\u5E84', 8.6, [25, 56]),
+  createPcGame('\u5C0F\u5C0F\u68A6\u9B47', 7.3, [7, 22]),
+  createPcGame('\u5973\u9B3C\u6865\u4E8C \u91CA\u9B42\u8DEF', 7.1, [24, 26]),
+  createPcGame('\u8BAE\u6848\u8FFD\u58F0', 6.7, [12, 12]),
+  createPcGame('\u5DEB\u5E083\uFF1A\u72C2\u730E', 6.6, [2, 78]),
+  createPcGame('\u9965\u8352\u8054\u673A\u7248', 6.4),
+  createPcGame('\u6A21\u62DF\u4EBA\u751F4', 6.2),
+  createPcGame('\u5C0F\u5C0F\u68A6\u9B472', 5.9),
+  createPcGame('\u63CD\u51FB\u6D3E\u5BF9', 5.5, [7, 31]),
+  createPcGame('\u6050\u9B3C\u75C7', 5, [2, 54]),
+  createPcGame('\u6C38\u52AB\u65E0\u95F4', 4.8, [6, 40]),
+  createPcGame('\u57CE\u5E02\uFF1A\u5929\u9645\u7EBF', 4.7, [9, 124]),
+  createPcGame('\u7075\u9B42\u6446\u6E21\u4EBA', 4.7, [3, 39]),
+  createPcGame('\u5973\u9B3C\u6865 \u5F00\u9B42\u8DEF', 4, [17, 22]),
+  createPcGame('\u68EE\u6797\u4E4B\u5B50', 3.2, [1, 32]),
+  createPcGame('\u65E0\u4E3B\u4E4B\u57302', 2.7, [5, 75]),
+  createPcGame('\u523A\u5BA2\u4FE1\u6761\uFF1A\u5927\u9769\u547D', 2.5, [0, 57]),
+  createPcGame('\u6D88\u901D\u7684\u5149\u8292', 2.1, [3, 78]),
+  createPcGame('\u7F3A\u6C27', 1.1, [1, 45]),
+  createPcGame('\u6536\u83B7\u65E52', 0.6, [5, 1314]),
+  createPcGame('\u4EBA\u7C7B\u4E00\u8D25\u6D82\u5730', 0.3, [1, 155]),
   {
     title: '\u6D1B\u514B\u738B\u56FD',
-    platform: '\u624B\u673A\u6E38\u620F',
+    platform: MOBILE_PLATFORM,
     icon: '/images/game-rock-kingdom.png',
     description: '\u6536\u96C6\u517B\u6210\u5411\u4F53\u9A8C\uFF0C\u5173\u6CE8\u5BA0\u7269\u6210\u957F\u3001\u957F\u7EBF\u76EE\u6807\u548C\u8F7B\u5EA6\u793E\u4EA4\u3002',
   },
   {
     title: '\u7B2C\u4E94\u4EBA\u683C',
-    platform: '\u624B\u673A\u6E38\u620F',
+    platform: MOBILE_PLATFORM,
     icon: '/images/game-identity-v.png',
     description: '\u975E\u5BF9\u79F0\u7ADE\u6280\u4F53\u9A8C\uFF0C\u5173\u6CE8\u89D2\u8272\u5DEE\u5F02\u3001\u5BF9\u5C40\u8282\u594F\u4E0E\u56E2\u961F\u535A\u5F08\u3002',
   },

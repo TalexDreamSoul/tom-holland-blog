@@ -16,21 +16,23 @@ useHead({
 
 <template>
   <DefaultLayout>
-    <section class="container-page py-16 md:py-24">
-      <p class="eyebrow">
-        Blog
-      </p>
-      <h1 class="mt-5 max-w-4xl text-[clamp(3rem,9vw,7.5rem)] font-680 leading-[0.9]">
-        Notes on design and building.
-      </h1>
-      <p class="mt-7 max-w-2xl text-lg text-muted-foreground">
-        A small archive of essays, product reflections, and implementation notes for people who care about interface craft.
-      </p>
+    <section class="container-page py-16 md:py-24" data-motion="section">
+      <div data-motion="section-heading">
+        <p class="eyebrow">
+          Blog
+        </p>
+        <h1 class="mt-5 max-w-4xl text-[clamp(3rem,9vw,7.5rem)] font-680 leading-[0.9]">
+          Notes on design and building.
+        </h1>
+        <p class="mt-7 max-w-2xl text-lg text-muted-foreground">
+          A small archive of essays, product reflections, and implementation notes for people who care about interface craft.
+        </p>
+      </div>
     </section>
 
-    <section class="container-page border-t border-border pb-24 pt-8">
+    <section class="container-page border-t border-border pb-24 pt-8" data-motion="section">
       <div class="grid gap-4">
-        <AppCard v-for="post in posts" :key="post.title" class="p-5">
+        <AppCard v-for="post in posts" :key="post.title" class="wine-panel p-5" data-motion="card">
           <div class="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
             <div class="max-w-3xl">
               <AppBadge variant="outline">

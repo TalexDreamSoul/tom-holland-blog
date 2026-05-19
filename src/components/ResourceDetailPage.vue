@@ -42,27 +42,29 @@ onUnmounted(() => {
 
 <template>
   <DefaultLayout>
-    <section class="container-page py-14 md:py-20">
+    <section class="container-page py-14 md:py-20" data-motion="section">
       <RouterLink to="/" class="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground font-700 focus-visible:h-focus hover:text-foreground">
         <ArrowLeft :size="16" />
         Back home
       </RouterLink>
-      <p class="eyebrow">
-        Portfolio
-      </p>
-      <h1 class="mt-5 max-w-4xl text-[clamp(3rem,9vw,7.5rem)] font-680 leading-[0.9]">
-        {{ column.title }}
-      </h1>
-      <p class="mt-7 max-w-2xl text-lg text-muted-foreground">
-        {{ column.description }}
-      </p>
+      <div data-motion="section-heading">
+        <p class="eyebrow">
+          Portfolio
+        </p>
+        <h1 class="mt-5 max-w-4xl text-[clamp(3rem,9vw,7.5rem)] font-680 leading-[0.9]">
+          {{ column.title }}
+        </h1>
+        <p class="mt-7 max-w-2xl text-lg text-muted-foreground">
+          {{ column.description }}
+        </p>
+      </div>
     </section>
 
-    <section class="container-page border-t border-border pb-24 pt-8">
-      <div v-if="column.gallery?.length" class="mb-8 border border-border rounded-[8px] bg-card p-4 shadow-soft">
-        <div class="relative overflow-hidden border border-border rounded-[8px] bg-secondary">
+    <section class="container-page border-t border-border pb-24 pt-8" data-motion="section">
+      <div v-if="column.gallery?.length" class="wine-panel mb-8 border rounded-[8px] p-4" data-motion="card">
+        <div class="wine-surface relative overflow-hidden border rounded-[8px]">
           <img
-            class="aspect-[16/9] w-full object-cover"
+            class="wine-image-bright aspect-[16/9] w-full object-cover"
             :src="column.gallery[activeSlide]"
             :alt="`${column.title} slide`"
           >
@@ -73,7 +75,7 @@ onUnmounted(() => {
                 :key="index"
                 type="button"
                 class="h-1.5 rounded-full transition-all"
-                :class="index === activeSlide ? 'w-6 bg-background' : 'w-1.5 bg-background/54'"
+                :class="index === activeSlide ? 'w-6 bg-primary' : 'w-1.5 bg-primary/42'"
                 :aria-label="`Go to slide ${index + 1}`"
                 @click="goToSlide(index)"
               />
@@ -81,7 +83,7 @@ onUnmounted(() => {
             <div class="flex gap-1">
               <button
                 type="button"
-                class="grid h-8 w-8 place-items-center rounded-[8px] bg-background/92 text-foreground focus-visible:h-focus hover:bg-background"
+                class="wine-inset grid h-8 w-8 place-items-center border rounded-[8px] text-foreground focus-visible:h-focus hover:border-primary"
                 aria-label="Previous slide"
                 @click="goToSlide(activeSlide - 1)"
               >
@@ -89,7 +91,7 @@ onUnmounted(() => {
               </button>
               <button
                 type="button"
-                class="grid h-8 w-8 place-items-center rounded-[8px] bg-background/92 text-foreground focus-visible:h-focus hover:bg-background"
+                class="wine-inset grid h-8 w-8 place-items-center border rounded-[8px] text-foreground focus-visible:h-focus hover:border-primary"
                 aria-label="Next slide"
                 @click="goToSlide(activeSlide + 1)"
               >
@@ -108,8 +110,9 @@ onUnmounted(() => {
           :href="item.disabled ? undefined : item.href"
           :target="item.disabled ? undefined : '_blank'"
           :rel="item.disabled ? undefined : 'noreferrer'"
-          class="group border border-border rounded-[8px] bg-card p-5 shadow-soft focus-visible:h-focus transition-colors"
-          :class="item.disabled ? 'opacity-72' : 'hover:bg-secondary/55'"
+          class="wine-panel group border rounded-[8px] p-5 focus-visible:h-focus transition-colors"
+          :class="item.disabled ? 'opacity-72' : 'hover:border-primary/70'"
+          data-motion="card"
         >
           <AppBadge variant="outline">
             {{ item.type }}

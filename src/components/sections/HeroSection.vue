@@ -4,13 +4,13 @@ import { principles, profile, stats } from '~/data/profile'
 </script>
 
 <template>
-  <section class="relative grid container-page min-h-[calc(100vh-64px)] items-center gap-12 py-16 lg:grid-cols-[minmax(0,1.1fr)_420px] lg:py-24">
+  <section class="relative grid container-page min-h-[calc(100vh-64px)] items-center gap-12 py-16 lg:grid-cols-[minmax(0,1.1fr)_420px] lg:py-24" data-motion="section">
     <div class="pointer-events-none absolute inset-x-[-20vw] top-0 h-[560px] overflow-hidden">
       <div class="hero-grid absolute inset-0 opacity-70" />
       <div class="hero-glow absolute left-1/2 top-12 h-76 w-76 rounded-full bg-primary/12 blur-3xl -translate-x-1/2" />
     </div>
 
-    <div class="relative z-10">
+    <div class="relative z-10" data-motion="hero">
       <AppBadge variant="outline" class="mb-6 gap-2">
         <Sparkles :size="14" />
         Portfolio / Blog / Studio Notes
@@ -33,10 +33,10 @@ import { principles, profile, stats } from '~/data/profile'
       </div>
     </div>
 
-    <AppCard class="relative z-10 p-5">
-      <div class="aspect-[4/5] overflow-hidden border border-border rounded-[8px] bg-secondary p-4">
-        <div class="relative h-full rounded-[8px] bg-card p-5">
-          <div class="absolute inset-5 border border-border rounded-[8px]" />
+    <AppCard class="wine-panel relative z-10 p-5" data-motion="hero-card">
+      <div class="wine-surface aspect-[4/5] overflow-hidden border rounded-[8px] p-4">
+        <div class="wine-inset relative h-full rounded-[8px] p-5">
+          <div class="absolute inset-5 border border-primary/24 rounded-[8px]" />
           <div class="relative h-full flex flex-col justify-between">
             <div class="flex items-start justify-between">
               <div>
@@ -53,7 +53,7 @@ import { principles, profile, stats } from '~/data/profile'
               <div
                 v-for="item in principles"
                 :key="item"
-                class="border border-border rounded-[8px] bg-background/70 p-3 text-sm text-muted-foreground"
+                class="wine-inset border rounded-[8px] p-3 text-sm text-muted-foreground"
               >
                 {{ item }}
               </div>
@@ -64,7 +64,7 @@ import { principles, profile, stats } from '~/data/profile'
     </AppCard>
 
     <div class="relative z-10 grid gap-3 border-y border-border py-5 lg:col-span-2 sm:grid-cols-3">
-      <div v-for="item in stats" :key="item.label" class="flex items-end justify-between gap-4 sm:block">
+      <div v-for="item in stats" :key="item.label" class="flex items-end justify-between gap-4 sm:block" data-motion="stat">
         <p class="text-4xl font-650 leading-none">
           {{ item.value }}
         </p>

@@ -25,7 +25,7 @@ import { posts } from '~/data/profile'
         v-for="post in posts"
         :key="post.title"
         to="/blog"
-        class="group grid gap-5 border border-border rounded-[8px] bg-card p-5 focus-visible:h-focus transition-colors md:grid-cols-[180px_minmax(0,1fr)_auto] hover:bg-secondary/60"
+        class="wine-panel group grid gap-5 border rounded-[8px] p-5 focus-visible:h-focus transition-colors md:grid-cols-[180px_minmax(0,1fr)_auto]"
       >
         <div class="text-sm text-muted-foreground">
           <p>{{ post.date }}</p>

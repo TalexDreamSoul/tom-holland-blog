@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { Menu, X } from 'lucide-vue-next'
+import { Github, Menu, Moon, Sun, X } from 'lucide-vue-next'
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useTheme } from '~/composables/useTheme'
 import { navItems, profile } from '~/data/profile'
 
 const route = useRoute()
 const isOpen = ref(false)
+const { isDark, toggleTheme } = useTheme()
 
 function isActive(to: string) {
   return route.path === to
@@ -39,21 +41,49 @@ watch(() => route.path, () => {
       </nav>
 
       <div class="hidden items-center gap-2 md:flex">
-        <AppButton href="mailto:hello@tomholland.dev" variant="secondary" size="sm">
-          Start a conversation
-        </AppButton>
+        <a
+          class="grid h-9 w-9 place-items-center border border-border rounded-[8px] bg-card text-muted-foreground focus-visible:h-focus transition-colors hover:bg-secondary hover:text-foreground"
+          :href="profile.github"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="GitHub"
+          title="GitHub"
+        >
+          <Github :size="17" />
+        </a>
+        <button
+          class="grid h-9 w-9 place-items-center border border-border rounded-[8px] bg-card text-muted-foreground focus-visible:h-focus transition-colors hover:bg-secondary hover:text-foreground"
+          type="button"
+          :aria-label="isDark ? 'Switch to light theme' : 'Switch to dark theme'"
+          :title="isDark ? 'Light theme' : 'Dark theme'"
+          @click="toggleTheme"
+        >
+          <Sun v-if="isDark" :size="17" />
+          <Moon v-else :size="17" />
+        </button>
       </div>
 
-      <button
-        class="inline-grid h-9 w-9 place-items-center border border-border rounded-[8px] bg-card text-foreground focus-visible:h-focus md:hidden"
-        type="button"
-        :aria-expanded="isOpen"
-        aria-label="Toggle navigation"
-        @click="isOpen = !isOpen"
-      >
-        <X v-if="isOpen" :size="18" />
-        <Menu v-else :size="18" />
-      </button>
+      <div class="flex items-center gap-2 md:hidden">
+        <button
+          class="grid h-9 w-9 place-items-center border border-border rounded-[8px] bg-card text-muted-foreground focus-visible:h-focus transition-colors hover:bg-secondary hover:text-foreground"
+          type="button"
+          :aria-label="isDark ? 'Switch to light theme' : 'Switch to dark theme'"
+          @click="toggleTheme"
+        >
+          <Sun v-if="isDark" :size="17" />
+          <Moon v-else :size="17" />
+        </button>
+        <button
+          class="inline-grid h-9 w-9 place-items-center border border-border rounded-[8px] bg-card text-foreground focus-visible:h-focus"
+          type="button"
+          :aria-expanded="isOpen"
+          aria-label="Toggle navigation"
+          @click="isOpen = !isOpen"
+        >
+          <X v-if="isOpen" :size="18" />
+          <Menu v-else :size="18" />
+        </button>
+      </div>
     </div>
 
     <div v-if="isOpen" class="border-t border-border bg-background md:hidden">

@@ -16,10 +16,10 @@ defineProps<{
 <template>
   <RouterLink
     to="/work"
-    class="group block overflow-hidden border border-border rounded-[8px] bg-card focus-visible:h-focus transition-(colors shadow transform) hover:border-border/70 hover:shadow-soft hover:-translate-y-1"
+    class="portfolio-pop-card group wine-panel block overflow-hidden border rounded-[8px] focus-visible:h-focus transition-(colors shadow transform) hover:-translate-y-1"
   >
     <img
-      class="aspect-[16/11] w-full object-cover"
+      class="wine-image aspect-[16/11] w-full object-cover"
       :src="project.image"
       :alt="`${project.title} project preview`"
     >

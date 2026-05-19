@@ -9,8 +9,8 @@ const props = withDefaults(defineProps<{
 })
 
 const variants = {
-  default: 'border-transparent bg-secondary text-secondary-foreground',
-  outline: 'border-border bg-card text-muted-foreground',
+  default: 'border-primary/28 bg-primary/18 text-foreground',
+  outline: 'border-primary/22 bg-primary/8 text-muted-foreground',
 }
 </script>
 
