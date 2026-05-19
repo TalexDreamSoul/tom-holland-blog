@@ -7,6 +7,10 @@ import { navItems, profile } from '~/data/profile'
 const route = useRoute()
 const isOpen = ref(false)
 
+function isActive(to: string) {
+  return route.path === to
+}
+
 watch(() => route.path, () => {
   isOpen.value = false
 })
@@ -28,7 +32,7 @@ watch(() => route.path, () => {
           :key="item.to"
           :to="item.to"
           class="rounded-[8px] px-3 py-2 text-sm text-muted-foreground focus-visible:h-focus transition-colors hover:bg-secondary hover:text-foreground"
-          :class="route.path === item.to ? 'bg-secondary text-foreground' : ''"
+          :class="isActive(item.to) ? 'bg-secondary text-foreground' : ''"
         >
           {{ item.label }}
         </RouterLink>
@@ -59,7 +63,8 @@ watch(() => route.path, () => {
           :key="item.to"
           :to="item.to"
           class="rounded-[8px] px-3 py-3 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-          :class="route.path === item.to ? 'bg-secondary text-foreground' : ''"
+          :class="isActive(item.to) ? 'bg-secondary text-foreground' : ''"
+          @click="isOpen = false"
         >
           {{ item.label }}
         </RouterLink>

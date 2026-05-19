@@ -16,9 +16,5 @@ useHead({
   <DefaultLayout>
     <HeroSection />
     <ResourcesSection />
-    <AboutSection />
-    <WorkSection />
-    <BlogSection />
-    <ContactSection />
   </DefaultLayout>
 </template>

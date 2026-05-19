@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowDownToLine, FileText, Gamepad2, GitBranch } from 'lucide-vue-next'
+import { ArrowRight, FileText, Gamepad2, GitBranch } from 'lucide-vue-next'
 import { resources } from '~/data/profile'
 
 const iconMap = {
@@ -16,12 +16,17 @@ const iconMap = {
         Portfolio
       </p>
       <h2 class="mt-4 text-[clamp(2rem,5vw,4.5rem)] font-620 leading-[1]">
-        {{ '\u4f5c\u54c1\u96c6' }}
+        {{ '\u4F5C\u54C1\u96C6' }}
       </h2>
     </div>
 
     <div class="grid gap-5 xl:grid-cols-3">
-      <AppCard v-for="column in resources.columns" :key="column.title" class="overflow-hidden">
+      <RouterLink
+        v-for="column in resources.columns"
+        :key="column.title"
+        :to="column.path"
+        class="group overflow-hidden border border-border rounded-[8px] bg-card shadow-soft focus-visible:h-focus transition-(colors transform) hover:bg-secondary/45 hover:-translate-y-1"
+      >
         <div class="border-b border-border bg-secondary/70 p-5">
           <div class="flex items-start justify-between gap-4">
             <div>
@@ -38,37 +43,39 @@ const iconMap = {
           </div>
         </div>
 
-        <div class="grid">
-          <component
-            :is="item.disabled ? 'div' : 'a'"
-            v-for="item in column.items"
-            :key="item.href"
-            :href="item.disabled ? undefined : item.href"
-            :target="item.disabled ? undefined : '_blank'"
-            :rel="item.disabled ? undefined : 'noreferrer'"
-            class="group grid gap-4 border-b border-border p-5 focus-visible:h-focus transition-colors 2xl:grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[minmax(0,1fr)_auto] xl:grid-cols-1 last:border-b-0"
-            :class="item.disabled ? 'cursor-default opacity-72' : 'hover:bg-secondary/55'"
+        <div class="grid gap-5 p-5">
+          <img
+            v-if="column.gallery?.length"
+            class="aspect-[16/9] w-full border border-border rounded-[8px] object-cover"
+            :src="column.gallery[0]"
+            :alt="`${column.title} preview`"
           >
-            <div>
-              <div class="mb-3 flex flex-wrap items-center gap-2">
-                <AppBadge variant="outline">
-                  {{ item.type }}
-                </AppBadge>
-              </div>
-              <h4 class="text-xl font-620 leading-tight">
+          <div v-else class="grid gap-3">
+            <div
+              v-for="item in column.items.slice(0, 2)"
+              :key="item.title"
+              class="border border-border rounded-[8px] bg-background/70 p-4"
+            >
+              <AppBadge variant="outline">
+                {{ item.type }}
+              </AppBadge>
+              <h4 class="mt-4 text-lg font-620 leading-tight">
                 {{ item.title }}
               </h4>
-              <p class="mt-3 text-sm text-muted-foreground">
+              <p class="mt-2 text-sm text-muted-foreground">
                 {{ item.description }}
               </p>
             </div>
-            <div class="flex items-center gap-2 text-sm text-muted-foreground font-700 transition-colors group-hover:text-foreground">
-              {{ item.disabled ? 'Coming soon' : 'Open' }}
-              <ArrowDownToLine v-if="!item.disabled" :size="16" />
-            </div>
-          </component>
+          </div>
+
+          <div class="flex items-center justify-between gap-4 border-t border-border pt-4 text-sm text-muted-foreground font-700 group-hover:text-foreground">
+            <span>
+              View details
+            </span>
+            <ArrowRight class="transition-transform group-hover:translate-x-1" :size="16" />
+          </div>
         </div>
-      </AppCard>
+      </RouterLink>
     </div>
   </section>
 </template>

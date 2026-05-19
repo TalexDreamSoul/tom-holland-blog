@@ -11,9 +11,11 @@ export const profile = {
 }
 
 export const navItems = [
-  { label: 'Home', to: '/' },
-  { label: 'Blog', to: '/blog' },
-  { label: 'Work', to: '/work' },
+  { label: '\u4E3B\u9875', to: '/' },
+  { label: '\u62C6\u89E3', to: '/analysis' },
+  { label: '\u7B56\u5212', to: '/planning' },
+  { label: '\u6E38\u620F Demo', to: '/game-demo' },
+  { label: '\u6E38\u620F\u7ECF\u5386', to: '/experience' },
 ]
 
 export const stats = [
@@ -98,6 +100,8 @@ export const resources = {
   columns: [
     {
       title: '\u62C6\u89E3',
+      id: 'analysis',
+      path: '/analysis',
       description: '\u89D2\u8272\u4E0E\u7CFB\u7EDF\u7814\u7A76\u6587\u6863',
       icon: 'analysis',
       items: [
@@ -119,6 +123,8 @@ export const resources = {
     },
     {
       title: '\u7B56\u5212',
+      id: 'planning',
+      path: '/planning',
       description: '\u6E38\u620F\u7B56\u5212\u4E0E\u9879\u76EE\u603B\u7ED3',
       icon: 'planning',
       items: [
@@ -140,8 +146,15 @@ export const resources = {
     },
     {
       title: '\u6E38\u620F Demo',
+      id: 'game-demo',
+      path: '/game-demo',
       description: '\u53EF\u73A9\u7248\u672C\u4E0E\u6F14\u793A\u94FE\u63A5',
       icon: 'demo',
+      gallery: [
+        '/images/demo-slide-01.png',
+        '/images/demo-slide-02.png',
+        '/images/demo-slide-03.png',
+      ],
       items: [
         {
           title: '\u300A\u5F69\u300B\u6E38\u620F Demo',
@@ -154,3 +167,36 @@ export const resources = {
     },
   ],
 }
+
+export const gameExperience = [
+  {
+    title: '\u751F\u5316\u5371\u673A2\u91CD\u5236\u7248',
+    platform: 'PC\u6E38\u620F',
+    icon: '/images/game-re2.png',
+    description: '\u7ECF\u5178\u751F\u5B58\u6050\u6016\u91CD\u5236\uFF0C\u5173\u6CE8\u5730\u56FE\u63A2\u7D22\u3001\u8D44\u6E90\u538B\u529B\u4E0E\u6C1B\u56F4\u8282\u594F\u3002',
+  },
+  {
+    title: '\u751F\u5316\u5371\u673A3\u91CD\u5236\u7248',
+    platform: 'PC\u6E38\u620F',
+    icon: '/images/game-re3.png',
+    description: '\u66F4\u504F\u884C\u52A8\u5316\u7684\u91CD\u5236\u4F5C\uFF0C\u4F53\u9A8C\u8FFD\u9010\u538B\u8FEB\u611F\u548C\u7EBF\u6027\u5173\u5361\u8282\u594F\u3002',
+  },
+  {
+    title: '\u751F\u5316\u5371\u673A4\u91CD\u5236\u7248',
+    platform: 'PC\u6E38\u620F',
+    icon: '/images/game-re4.png',
+    description: '\u5173\u6CE8\u7B2C\u4E09\u4EBA\u79F0\u6218\u6597\u624B\u611F\u3001\u7ECF\u6D4E\u6210\u957F\u548C\u7ECF\u5178\u5173\u5361\u73B0\u4EE3\u5316\u3002',
+  },
+  {
+    title: '\u6D1B\u514B\u738B\u56FD',
+    platform: '\u624B\u673A\u6E38\u620F',
+    icon: '/images/game-rock-kingdom.png',
+    description: '\u6536\u96C6\u517B\u6210\u5411\u4F53\u9A8C\uFF0C\u5173\u6CE8\u5BA0\u7269\u6210\u957F\u3001\u957F\u7EBF\u76EE\u6807\u548C\u8F7B\u5EA6\u793E\u4EA4\u3002',
+  },
+  {
+    title: '\u7B2C\u4E94\u4EBA\u683C',
+    platform: '\u624B\u673A\u6E38\u620F',
+    icon: '/images/game-identity-v.png',
+    description: '\u975E\u5BF9\u79F0\u7ADE\u6280\u4F53\u9A8C\uFF0C\u5173\u6CE8\u89D2\u8272\u5DEE\u5F02\u3001\u5BF9\u5C40\u8282\u594F\u4E0E\u56E2\u961F\u535A\u5F08\u3002',
+  },
+]
