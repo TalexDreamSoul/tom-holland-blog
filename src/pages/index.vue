@@ -2,11 +2,11 @@
 import { useHead } from '@unhead/vue'
 
 useHead({
-  title: 'Tom Holland - Portfolio, Blog, and Work',
+  title: 'LXR - Portfolio, Blog, and Work',
   meta: [
     {
       name: 'description',
-      content: 'A minimal personal website for Tom Holland, featuring selected work, writing, and portfolio notes.',
+      content: 'A minimal personal website for LXR, featuring selected work, writing, and portfolio notes.',
     },
   ],
 })

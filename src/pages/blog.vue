@@ -4,7 +4,7 @@ import { CalendarDays } from 'lucide-vue-next'
 import { posts } from '~/data/profile'
 
 useHead({
-  title: 'Blog - Tom Holland',
+  title: 'Blog - LXR',
   meta: [
     {
       name: 'description',

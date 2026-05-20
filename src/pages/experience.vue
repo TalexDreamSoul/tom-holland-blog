@@ -70,7 +70,7 @@ function achievementsLabel(game: GameExperienceItem) {
 }
 
 useHead({
-  title: '\u6E38\u620F\u7ECF\u5386 - Tom Holland',
+  title: '\u6E38\u620F\u7ECF\u5386 - LXR',
 })
 </script>
 

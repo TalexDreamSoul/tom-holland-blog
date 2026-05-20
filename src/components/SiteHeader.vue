@@ -22,10 +22,13 @@ watch(() => route.path, () => {
   <header class="sticky top-0 z-40 border-b border-border/80 bg-background/84 backdrop-blur-xl">
     <div class="container-page min-h-16 flex items-center justify-between gap-4">
       <RouterLink to="/" class="flex items-center gap-3 focus-visible:h-focus">
-        <span class="grid h-8 w-8 place-items-center rounded-[8px] bg-foreground text-sm text-background font-800">
-          TH
+        <span class="lxr-brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 96 48" role="img">
+            <path class="lxr-mark-red" d="M9 7v34h34" />
+            <path class="lxr-mark-red" d="M36 14l26 27" />
+            <path class="lxr-mark-light" d="M44 41 66 14h18c8 0 13 5 13 12s-5 12-13 12H72l18 20" />
+          </svg>
         </span>
-        <span class="hidden text-sm font-700 sm:inline">{{ profile.name }}</span>
       </RouterLink>
 
       <nav class="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
@@ -102,3 +105,33 @@ watch(() => route.path, () => {
     </div>
   </header>
 </template>
+
+<style scoped>
+.lxr-brand-mark {
+  display: grid;
+  width: 42px;
+  height: 24px;
+  place-items: center;
+}
+
+.lxr-brand-mark svg {
+  width: 42px;
+  height: 24px;
+  overflow: visible;
+}
+
+.lxr-brand-mark path {
+  fill: none;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 6;
+}
+
+.lxr-mark-red {
+  stroke: hsl(var(--primary));
+}
+
+.lxr-mark-light {
+  stroke: hsl(var(--foreground));
+}
+</style>

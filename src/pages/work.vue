@@ -3,11 +3,11 @@ import { useHead } from '@unhead/vue'
 import { projects } from '~/data/profile'
 
 useHead({
-  title: 'Work - Tom Holland',
+  title: 'Work - LXR',
   meta: [
     {
       name: 'description',
-      content: 'Selected portfolio projects by Tom Holland across product design, blogs, systems, and frontend interfaces.',
+      content: 'Selected portfolio projects by LXR across product design, blogs, systems, and frontend interfaces.',
     },
   ],
 })

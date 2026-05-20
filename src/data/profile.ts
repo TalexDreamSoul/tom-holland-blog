@@ -1,14 +1,14 @@
 export const profile = {
-  name: 'Tom Holland',
+  name: 'LXR',
   title: 'Designer, writer, and frontend maker',
   location: 'Shanghai / Remote',
-  email: 'hello@tomholland.dev',
+  email: 'hello@lxr.dev',
   github: 'https://github.com/',
   availability: 'Open for thoughtful collaborations',
   intro:
     'I design quiet digital products, write about the craft behind them, and build polished interfaces that feel calm under pressure.',
   bio:
-    'Tom works across product strategy, interface systems, and frontend implementation. His work favors restraint, legibility, and details that make complex tools easier to live with every day.',
+    'LXR works across product strategy, interface systems, and frontend implementation. The work favors restraint, legibility, and details that make complex tools easier to live with every day.',
 }
 
 export const navItems = [
