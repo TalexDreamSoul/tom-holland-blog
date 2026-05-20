@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ArrowUpRight, BookOpen, Sparkles } from 'lucide-vue-next'
-import { principles, profile, stats } from '~/data/profile'
+import { principles, profile } from '~/data/profile'
 </script>
 
 <template>
@@ -62,17 +62,6 @@ import { principles, profile, stats } from '~/data/profile'
         </div>
       </div>
     </AppCard>
-
-    <div class="relative z-10 grid gap-3 border-y border-border py-5 lg:col-span-2 sm:grid-cols-3">
-      <div v-for="item in stats" :key="item.label" class="flex items-end justify-between gap-4 sm:block" data-motion="stat">
-        <p class="text-4xl font-650 leading-none">
-          {{ item.value }}
-        </p>
-        <p class="mt-2 text-sm text-muted-foreground">
-          {{ item.label }}
-        </p>
-      </div>
-    </div>
   </section>
 </template>
 

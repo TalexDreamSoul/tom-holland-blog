@@ -52,7 +52,6 @@ export function initScrollMotion() {
     gsap.utils.toArray<HTMLElement>('[data-motion="section"]').forEach((section) => {
       const heading = section.querySelectorAll<HTMLElement>('[data-motion="section-heading"]')
       const cards = section.querySelectorAll<HTMLElement>('[data-motion="card"]')
-      const stats = section.querySelectorAll<HTMLElement>('[data-motion="stat"]')
 
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -82,15 +81,6 @@ export function initScrollMotion() {
         }, heading.length ? '-=0.28' : 0)
       }
 
-      if (stats.length) {
-        timeline.from(stats, {
-          autoAlpha: 0,
-          duration: 0.62,
-          ease: 'power3.out',
-          stagger: 0.08,
-          y: 18,
-        }, '-=0.36')
-      }
     })
   }, root ?? document.body)
 

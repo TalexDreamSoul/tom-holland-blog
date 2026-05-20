@@ -208,6 +208,13 @@ useHead({
                   :src="game.icon"
                   :alt="`${game.title} icon`"
                 >
+                <div
+                  v-else
+                  class="game-cover-placeholder grid h-19 w-19 place-items-center border rounded-[8px] px-2 text-center"
+                  aria-hidden="true"
+                >
+                  <span>{{ game.title }}</span>
+                </div>
                 <div class="min-w-0">
                   <AppBadge variant="outline">
                     {{ game.platform }}
@@ -215,7 +222,7 @@ useHead({
                   <h3 class="mt-3 text-2xl font-620 leading-tight">
                     {{ game.title }}
                   </h3>
-                  <p class="mt-3 text-sm text-muted-foreground">
+                  <p v-if="game.description" class="mt-3 text-sm text-muted-foreground">
                     {{ game.description }}
                   </p>
                 </div>

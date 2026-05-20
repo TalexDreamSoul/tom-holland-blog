@@ -19,12 +19,6 @@ export const navItems = [
   { label: '\u6E38\u620F\u7ECF\u5386', to: '/experience' },
 ]
 
-export const stats = [
-  { label: 'Years building', value: '08' },
-  { label: 'Selected projects', value: '24' },
-  { label: 'Essays published', value: '36' },
-]
-
 export const principles = [
   'Calm systems over loud decoration',
   'Readable interfaces for repeated use',
@@ -187,7 +181,7 @@ export interface GameExperienceItem {
 const PC_PLATFORM = 'PC\u6E38\u620F'
 const MOBILE_PLATFORM = '\u624B\u673A\u6E38\u620F'
 
-function createPcGame(title: string, playtimeHours: number, achievementsTuple?: [number, number]): GameExperienceItem {
+function createPcGame(title: string, playtimeHours?: number, achievementsTuple?: [number, number]): GameExperienceItem {
   const achievements = achievementsTuple
     ? {
         unlocked: achievementsTuple[0],
@@ -198,13 +192,21 @@ function createPcGame(title: string, playtimeHours: number, achievementsTuple?: 
   return {
     title,
     platform: PC_PLATFORM,
-    playtimeHours,
+    ...(typeof playtimeHours === 'number' ? { playtimeHours } : {}),
     ...(achievements
       ? {
           progress: achievements.total > 0 ? Math.round((achievements.unlocked / achievements.total) * 100) : 0,
           achievements,
         }
       : {}),
+    description: '',
+  }
+}
+
+function createMobileGame(title: string): GameExperienceItem {
+  return {
+    title,
+    platform: MOBILE_PLATFORM,
     description: '',
   }
 }
@@ -267,16 +269,35 @@ export const gameExperience: GameExperienceItem[] = [
   createPcGame('\u7F3A\u6C27', 1.1, [1, 45]),
   createPcGame('\u6536\u83B7\u65E52', 0.6, [5, 1314]),
   createPcGame('\u4EBA\u7C7B\u4E00\u8D25\u6D82\u5730', 0.3, [1, 155]),
-  {
-    title: '\u6D1B\u514B\u738B\u56FD',
-    platform: MOBILE_PLATFORM,
-    icon: '/images/game-rock-kingdom.png',
-    description: '\u6536\u96C6\u517B\u6210\u5411\u4F53\u9A8C\uFF0C\u5173\u6CE8\u5BA0\u7269\u6210\u957F\u3001\u957F\u7EBF\u76EE\u6807\u548C\u8F7B\u5EA6\u793E\u4EA4\u3002',
-  },
-  {
-    title: '\u7B2C\u4E94\u4EBA\u683C',
-    platform: MOBILE_PLATFORM,
-    icon: '/images/game-identity-v.png',
-    description: '\u975E\u5BF9\u79F0\u7ADE\u6280\u4F53\u9A8C\uFF0C\u5173\u6CE8\u89D2\u8272\u5DEE\u5F02\u3001\u5BF9\u5C40\u8282\u594F\u4E0E\u56E2\u961F\u535A\u5F08\u3002',
-  },
+  createPcGame('\u6700\u540E\u7684\u751F\u8FD8\u8005'),
+  createPcGame('\u82F1\u96C4\u8054\u76DF'),
+  createPcGame('CF'),
+  createPcGame('\u53CC\u4EBA\u6210\u884C'),
+  createPcGame('\u6211\u7684\u4E16\u754C'),
+  createPcGame('\u65E0\u754F\u5951\u7EA6'),
+  createPcGame('\u690D\u7269\u5927\u6218\u50F5\u5C38'),
+  createMobileGame('\u6D1B\u514B\u738B\u56FD'),
+  createMobileGame('\u7B2C\u4E94\u4EBA\u683C'),
+  createMobileGame('\u738B\u8005\u8363\u8000'),
+  createMobileGame('\u6F5C\u6C34\u5458\u6234\u592B'),
+  createMobileGame('\u9634\u9633\u5E08'),
+  createMobileGame('\u91D1\u94F2\u94F2\u4E4B\u6218'),
+  createMobileGame('\u5143\u795E'),
+  createMobileGame('\u5149\u9047'),
+  createMobileGame('\u82F1\u96C4\u8054\u76DF\u624B\u6E38'),
+  createMobileGame('\u9E45\u9E2D\u6740\u624B\u6E38'),
+  createMobileGame('\u6697\u533A\u7A81\u56F4'),
+  createMobileGame('\u5F00\u7F57\u7CFB\u5217'),
+  createMobileGame('\u548C\u5E73\u7CBE\u82F1'),
+  createMobileGame('\u7403\u7403\u5927\u4F5C\u6218'),
+  createMobileGame('\u8D2A\u5403\u86C7\u5927\u4F5C\u6218'),
+  createMobileGame('\u706B\u5F71\u5FCD\u8005'),
+  createMobileGame('\u90E8\u843D\u6218\u4E89\uFF1A\u7687\u5BA4\u6218\u4E89'),
+  createMobileGame('\u5F00\u5FC3\u6D88\u6D88\u4E50'),
+  createMobileGame('\u7EAA\u5FF5\u7891\u8C37'),
+  createMobileGame('\u5143\u6C14\u9A91\u58EB'),
+  createMobileGame('\u75AF\u72C2\u52A8\u7269\u56ED'),
+  createMobileGame('\u4E09\u56FD\u6740'),
+  createMobileGame('\u5730\u94C1\u8DD1\u9177'),
+  createMobileGame('\u690D\u7269\u5927\u6218\u50F5\u5C382'),
 ]
