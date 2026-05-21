@@ -43,13 +43,13 @@ onUnmounted(() => {
 <template>
   <DefaultLayout>
     <section class="container-page py-14 md:py-20" data-motion="section">
-      <RouterLink to="/" class="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground font-700 focus-visible:h-focus hover:text-foreground">
+      <RouterLink to="/" class="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground font-700 focus-visible:h-focus hover:text-foreground" data-motion="text">
         <ArrowLeft :size="16" />
-        Back home
+        返回主页
       </RouterLink>
       <div data-motion="section-heading">
         <p class="eyebrow">
-          Portfolio
+          作品集
         </p>
         <h1 class="mt-5 max-w-4xl text-[clamp(3rem,9vw,7.5rem)] font-680 leading-[0.9]">
           {{ column.title }}
@@ -61,12 +61,12 @@ onUnmounted(() => {
     </section>
 
     <section class="container-page border-t border-border pb-24 pt-8" data-motion="section">
-      <div v-if="column.gallery?.length" class="wine-panel mb-8 border rounded-[8px] p-4" data-motion="card">
+      <div v-if="column.gallery?.length" class="wine-panel mb-8 border rounded-[8px] p-4" data-motion="media">
         <div class="wine-surface relative overflow-hidden border rounded-[8px]">
           <img
             class="wine-image-bright aspect-[16/9] w-full object-cover"
             :src="column.gallery[activeSlide]"
-            :alt="`${column.title} slide`"
+            :alt="`${column.title}轮播图`"
           >
           <div class="absolute inset-x-0 bottom-0 flex items-center justify-between from-foreground/58 to-transparent bg-gradient-to-t p-3">
             <div class="flex gap-1.5">
@@ -76,7 +76,7 @@ onUnmounted(() => {
                 type="button"
                 class="h-1.5 rounded-full transition-all"
                 :class="index === activeSlide ? 'w-6 bg-primary' : 'w-1.5 bg-primary/42'"
-                :aria-label="`Go to slide ${index + 1}`"
+                :aria-label="`跳转到第 ${index + 1} 张`"
                 @click="goToSlide(index)"
               />
             </div>
@@ -84,7 +84,7 @@ onUnmounted(() => {
               <button
                 type="button"
                 class="wine-inset grid h-8 w-8 place-items-center border rounded-[8px] text-foreground focus-visible:h-focus hover:border-primary"
-                aria-label="Previous slide"
+                aria-label="上一张"
                 @click="goToSlide(activeSlide - 1)"
               >
                 <ChevronLeft :size="16" />
@@ -92,7 +92,7 @@ onUnmounted(() => {
               <button
                 type="button"
                 class="wine-inset grid h-8 w-8 place-items-center border rounded-[8px] text-foreground focus-visible:h-focus hover:border-primary"
-                aria-label="Next slide"
+                aria-label="下一张"
                 @click="goToSlide(activeSlide + 1)"
               >
                 <ChevronRight :size="16" />
@@ -124,7 +124,7 @@ onUnmounted(() => {
             {{ item.description }}
           </p>
           <div class="mt-6 flex items-center gap-2 text-sm text-muted-foreground font-700 transition-colors group-hover:text-foreground">
-            {{ item.disabled ? 'Coming soon' : 'Open file' }}
+            {{ item.disabled ? '即将开放' : '打开文件' }}
             <ArrowDownToLine v-if="!item.disabled" :size="16" />
           </div>
         </component>

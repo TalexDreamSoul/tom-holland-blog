@@ -4,14 +4,14 @@ import { profile } from '~/data/profile'
 </script>
 
 <template>
-  <section class="container-page border-t border-border py-18 md:py-24">
-    <div class="grid gap-8 border border-border rounded-[8px] bg-foreground p-6 text-background md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:p-8">
+  <section class="container-page border-t border-border py-18 md:py-24" data-motion="section">
+    <div class="grid gap-8 border border-border rounded-[8px] bg-foreground p-6 text-background md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:p-8" data-motion="card">
       <div>
         <p class="text-sm text-background/62 font-700 uppercase">
-          Contact
+          联系
         </p>
         <h2 class="mt-5 max-w-2xl text-[clamp(2.4rem,6vw,5.2rem)] font-620 leading-[0.95]">
-          Let the next project feel quieter and sharper.
+          让下一个项目更清晰、更锋利。
         </h2>
       </div>
       <a

@@ -5,7 +5,7 @@ import { principles, profile } from '~/data/profile'
 
 <template>
   <section class="relative grid container-page min-h-[calc(100vh-64px)] items-center gap-12 py-16 lg:grid-cols-[minmax(0,1.1fr)_420px] lg:py-24" data-motion="section">
-    <div class="pointer-events-none absolute inset-x-[-20vw] top-0 h-[560px] overflow-hidden">
+    <div class="pointer-events-none absolute inset-x-[-20vw] top-0 h-[560px] overflow-hidden" data-motion="parallax">
       <div class="hero-grid absolute inset-0 opacity-70" />
       <div class="hero-glow absolute left-1/2 top-12 h-76 w-76 rounded-full bg-primary/12 blur-3xl -translate-x-1/2" />
     </div>
@@ -13,7 +13,7 @@ import { principles, profile } from '~/data/profile'
     <div class="relative z-10" data-motion="hero">
       <AppBadge variant="outline" class="mb-6 gap-2">
         <Sparkles :size="14" />
-        Portfolio / Blog / Studio Notes
+        游戏策划 / 系统拆解 / 演示原型
       </AppBadge>
       <h1 class="max-w-4xl text-[clamp(3.6rem,10vw,8.5rem)] font-680 leading-[0.88] tracking-normal">
         {{ profile.name }}
@@ -22,12 +22,12 @@ import { principles, profile } from '~/data/profile'
         {{ profile.intro }}
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
-        <AppButton to="/work">
-          View work
+        <AppButton to="/analysis">
+          查看拆解
           <ArrowUpRight :size="16" />
         </AppButton>
-        <AppButton to="/blog" variant="secondary">
-          Read notes
+        <AppButton to="/planning" variant="secondary">
+          阅读策划
           <BookOpen :size="16" />
         </AppButton>
       </div>
@@ -41,10 +41,10 @@ import { principles, profile } from '~/data/profile'
             <div class="flex items-start justify-between">
               <div>
                 <p class="eyebrow">
-                  Current focus
+                  当前关注
                 </p>
                 <h2 class="mt-3 max-w-72 text-3xl font-620 leading-tight">
-                  Designing calm tools for ambitious people.
+                  用拆解和原型，把游戏体验讲清楚。
                 </h2>
               </div>
               <span class="h-3 w-3 rounded-full bg-primary" />
@@ -54,6 +54,7 @@ import { principles, profile } from '~/data/profile'
                 v-for="item in principles"
                 :key="item"
                 class="wine-inset border rounded-[8px] p-3 text-sm text-muted-foreground"
+                data-motion="text"
               >
                 {{ item }}
               </div>
