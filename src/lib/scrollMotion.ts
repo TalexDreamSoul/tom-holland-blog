@@ -7,6 +7,11 @@ function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
+function getSectionMotionElements(section: HTMLElement, selector: string) {
+  return Array.from(section.querySelectorAll<HTMLElement>(selector))
+    .filter(element => element.closest<HTMLElement>('[data-motion="section"]') === section)
+}
+
 export function initScrollMotion() {
   if (prefersReducedMotion())
     return () => {}
@@ -50,8 +55,11 @@ export function initScrollMotion() {
     }
 
     gsap.utils.toArray<HTMLElement>('[data-motion="section"]').forEach((section) => {
-      const heading = section.querySelectorAll<HTMLElement>('[data-motion="section-heading"]')
-      const cards = section.querySelectorAll<HTMLElement>('[data-motion="card"]')
+      const heading = getSectionMotionElements(section, '[data-motion="section-heading"]')
+      const cards = getSectionMotionElements(section, '[data-motion="card"]')
+      const media = getSectionMotionElements(section, '[data-motion="media"]')
+      const rows = getSectionMotionElements(section, '[data-motion="row"]')
+      const text = getSectionMotionElements(section, '[data-motion="text"]')
 
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -62,13 +70,34 @@ export function initScrollMotion() {
         },
       })
 
-      if (heading.length) {
+      if (heading.length && !section.matches('[data-motion-skip-heading="true"]')) {
         timeline.from(heading, {
           autoAlpha: 0,
-          duration: 0.7,
+          duration: 0.72,
           ease: 'power3.out',
-          y: 28,
+          y: 30,
         })
+      }
+
+      if (text.length) {
+        timeline.from(text, {
+          autoAlpha: 0,
+          duration: 0.64,
+          ease: 'power3.out',
+          stagger: 0.08,
+          y: 22,
+        }, heading.length ? '-=0.3' : 0)
+      }
+
+      if (media.length) {
+        timeline.from(media, {
+          autoAlpha: 0,
+          clipPath: 'inset(10% 0% 10% 0% round 8px)',
+          duration: 0.9,
+          ease: 'power3.out',
+          scale: 0.96,
+          y: 26,
+        }, heading.length || text.length ? '-=0.22' : 0)
       }
 
       if (cards.length) {
@@ -76,11 +105,47 @@ export function initScrollMotion() {
           autoAlpha: 0,
           duration: 0.74,
           ease: 'power3.out',
-          stagger: 0.1,
+          stagger: cards.length > 10 ? 0.035 : 0.1,
           y: 34,
-        }, heading.length ? '-=0.28' : 0)
+        }, heading.length || text.length || media.length ? '-=0.24' : 0)
       }
 
+      if (rows.length) {
+        timeline.from(rows, {
+          autoAlpha: 0,
+          duration: 0.58,
+          ease: 'power2.out',
+          stagger: rows.length > 14 ? 0.025 : 0.055,
+          x: -18,
+        }, cards.length ? '-=0.22' : '-=0.12')
+      }
+    })
+
+    gsap.utils.toArray<HTMLElement>('[data-motion="parallax"]').forEach((element) => {
+      gsap.to(element, {
+        ease: 'none',
+        scrollTrigger: {
+          end: 'bottom top',
+          scrub: 0.8,
+          start: 'top bottom',
+          trigger: element,
+        },
+        yPercent: -10,
+      })
+    })
+
+    gsap.utils.toArray<HTMLElement>('[data-motion="standalone"]').forEach((element) => {
+      gsap.from(element, {
+        autoAlpha: 0,
+        duration: 0.7,
+        ease: 'power3.out',
+        scrollTrigger: {
+          once: true,
+          start: 'top 90%',
+          trigger: element,
+        },
+        y: 24,
+      })
     })
   }, root ?? document.body)
 
