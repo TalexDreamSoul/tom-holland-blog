@@ -5,7 +5,7 @@ import { resources } from '~/data/profile'
 const column = resources.columns.find(item => item.id === 'game-demo')!
 
 useHead({
-  title: '游戏 Demo - LXR',
+  title: '游戏演示 - LXR',
 })
 </script>
 

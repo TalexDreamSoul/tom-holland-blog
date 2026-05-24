@@ -21,7 +21,7 @@ watch(() => route.path, () => {
 <template>
   <header class="sticky top-0 z-40 border-b border-border/80 bg-background/84 backdrop-blur-xl">
     <div class="container-page min-h-16 flex items-center justify-between gap-4">
-      <RouterLink to="/" class="flex items-center gap-3 focus-visible:h-focus">
+      <RouterLink to="/" class="flex items-center gap-3 focus-visible:h-focus" aria-label="返回主页">
         <span class="lxr-brand-mark" aria-hidden="true">
           <svg viewBox="0 0 96 48" role="img">
             <path class="lxr-mark-red" d="M9 7v34h34" />
@@ -31,7 +31,7 @@ watch(() => route.path, () => {
         </span>
       </RouterLink>
 
-      <nav class="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
+      <nav class="hidden items-center gap-1 md:flex" aria-label="主导航">
         <RouterLink
           v-for="item in navItems"
           :key="item.to"
@@ -49,7 +49,7 @@ watch(() => route.path, () => {
           :href="profile.github"
           target="_blank"
           rel="noreferrer"
-          aria-label="GitHub"
+          aria-label="打开 GitHub"
           title="GitHub"
         >
           <Github :size="17" />
@@ -57,9 +57,9 @@ watch(() => route.path, () => {
         <button
           class="grid h-9 w-9 place-items-center border border-border rounded-[8px] bg-card text-muted-foreground focus-visible:h-focus transition-colors hover:bg-secondary hover:text-foreground"
           type="button"
-          :aria-label="isDark ? 'Switch to light theme' : 'Switch to dark theme'"
-          :title="isDark ? 'Light theme' : 'Dark theme'"
-          @click="toggleTheme"
+          :aria-label="isDark ? '切换到浅色模式' : '切换到深色模式'"
+          :title="isDark ? '浅色模式' : '深色模式'"
+          @click="toggleTheme($event)"
         >
           <Sun v-if="isDark" :size="17" />
           <Moon v-else :size="17" />
@@ -70,8 +70,8 @@ watch(() => route.path, () => {
         <button
           class="grid h-9 w-9 place-items-center border border-border rounded-[8px] bg-card text-muted-foreground focus-visible:h-focus transition-colors hover:bg-secondary hover:text-foreground"
           type="button"
-          :aria-label="isDark ? 'Switch to light theme' : 'Switch to dark theme'"
-          @click="toggleTheme"
+          :aria-label="isDark ? '切换到浅色模式' : '切换到深色模式'"
+          @click="toggleTheme($event)"
         >
           <Sun v-if="isDark" :size="17" />
           <Moon v-else :size="17" />
@@ -80,7 +80,7 @@ watch(() => route.path, () => {
           class="inline-grid h-9 w-9 place-items-center border border-border rounded-[8px] bg-card text-foreground focus-visible:h-focus"
           type="button"
           :aria-expanded="isOpen"
-          aria-label="Toggle navigation"
+          aria-label="切换导航菜单"
           @click="isOpen = !isOpen"
         >
           <X v-if="isOpen" :size="18" />
@@ -90,7 +90,7 @@ watch(() => route.path, () => {
     </div>
 
     <div v-if="isOpen" class="border-t border-border bg-background md:hidden">
-      <nav class="grid container-page gap-1 py-3" aria-label="Mobile navigation">
+      <nav class="grid container-page gap-1 py-3" aria-label="移动端导航">
         <RouterLink
           v-for="item in navItems"
           :key="item.to"

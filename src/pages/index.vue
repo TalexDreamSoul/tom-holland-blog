@@ -2,11 +2,11 @@
 import { useHead } from '@unhead/vue'
 
 useHead({
-  title: 'LXR - Portfolio, Blog, and Work',
+  title: 'LXR - 游戏策划作品集',
   meta: [
     {
       name: 'description',
-      content: 'A minimal personal website for LXR, featuring selected work, writing, and portfolio notes.',
+      content: 'LXR 的游戏策划作品集，展示系统拆解、策划文档、游戏演示与游玩经历。',
     },
   ],
 })

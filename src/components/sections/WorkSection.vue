@@ -8,14 +8,14 @@ import { projects } from '~/data/profile'
     <div class="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end" data-motion="section-heading">
       <div>
         <p class="eyebrow">
-          Portfolio
+          作品集
         </p>
         <h2 class="mt-4 text-[clamp(2rem,5vw,4.5rem)] font-620 leading-[1]">
-          Selected work
+          重点作品
         </h2>
       </div>
       <AppButton to="/work" variant="secondary">
-        Work archive
+        作品归档
         <ArrowRight :size="16" />
       </AppButton>
     </div>

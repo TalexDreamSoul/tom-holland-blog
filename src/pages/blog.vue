@@ -4,11 +4,11 @@ import { CalendarDays } from 'lucide-vue-next'
 import { posts } from '~/data/profile'
 
 useHead({
-  title: 'Blog - LXR',
+  title: '文章 - LXR',
   meta: [
     {
       name: 'description',
-      content: 'Essays and notes about design, frontend craft, and personal publishing.',
+      content: '关于游戏系统拆解、策划方法、体验观察与个人作品集整理的记录。',
     },
   ],
 })
@@ -19,13 +19,13 @@ useHead({
     <section class="container-page py-16 md:py-24" data-motion="section">
       <div data-motion="section-heading">
         <p class="eyebrow">
-          Blog
+          文章
         </p>
         <h1 class="mt-5 max-w-4xl text-[clamp(3rem,9vw,7.5rem)] font-680 leading-[0.9]">
-          Notes on design and building.
+          关于游戏拆解与策划思考的记录。
         </h1>
         <p class="mt-7 max-w-2xl text-lg text-muted-foreground">
-          A small archive of essays, product reflections, and implementation notes for people who care about interface craft.
+          这里保存一些系统分析、策划复盘和作品集整理过程中的方法笔记。
         </p>
       </div>
     </section>
