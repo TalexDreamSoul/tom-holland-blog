@@ -146,9 +146,12 @@ export const resources = {
       description: '可玩版本与演示链接',
       icon: 'demo',
       gallery: [
-        '/images/demo-slide-01.png',
-        '/images/demo-slide-02.png',
-        '/images/demo-slide-03.png',
+        '/images/cai-demo-01.png',
+        '/images/cai-demo-02.png',
+        '/images/cai-demo-03.png',
+        '/images/cai-demo-04.png',
+        '/images/cai-demo-05.png',
+        '/images/cai-demo-06.png',
       ],
       items: [
         {
@@ -157,6 +160,22 @@ export const resources = {
           href: '',
           disabled: true,
           description: '预留的演示展示位，后续可替换为可玩版本、视频或线上链接。',
+        },
+        {
+          title: '\u300A\u4E2D\u56FD\u5EFA\u7B51\u5F55\u300B',
+          type: '\u89C6\u9891\u94FE\u63A5',
+          disabled: false,
+          description: '\u300A\u4E2D\u56FD\u5EFA\u7B51\u5F55\u300B\u76F8\u5173\u6F14\u793A\u5185\u5BB9\u4E0E\u793E\u4EA4\u5E73\u53F0\u53D1\u5E03\u94FE\u63A5\u3002',
+          links: [
+            {
+              label: '\u6296\u97F3',
+              href: 'https://v.douyin.com/EiFUvlXfTMk/',
+            },
+            {
+              label: '\u5C0F\u7EA2\u4E66',
+              href: 'http://xhslink.com/o/5ucC9IyXkDg',
+            },
+          ],
         },
       ],
     },
