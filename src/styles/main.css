@@ -256,6 +256,10 @@ img {
   filter: var(--wine-image-filter-bright);
 }
 
+.resource-gallery-image {
+  background-color: hsl(0 0% 4%);
+}
+
 .game-experience-card {
   position: relative;
   overflow: hidden;

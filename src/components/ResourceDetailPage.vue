@@ -10,9 +10,13 @@ const props = defineProps<{
     items: Array<{
       title: string
       type: string
-      href: string
-      disabled: boolean
+      href?: string
+      disabled?: boolean
       description: string
+      links?: Array<{
+        label: string
+        href: string
+      }>
     }>
   }
 }>()
@@ -64,7 +68,7 @@ onUnmounted(() => {
       <div v-if="column.gallery?.length" class="wine-panel mb-8 border rounded-[8px] p-4" data-motion="media">
         <div class="wine-surface relative overflow-hidden border rounded-[8px]">
           <img
-            class="wine-image-bright aspect-[16/9] w-full object-cover"
+            class="resource-gallery-image aspect-[16/9] w-full object-cover"
             :src="column.gallery[activeSlide]"
             :alt="`${column.title}轮播图`"
           >
@@ -104,12 +108,12 @@ onUnmounted(() => {
 
       <div class="grid gap-4 md:grid-cols-2">
         <component
-          :is="item.disabled ? 'div' : 'a'"
+          :is="item.disabled || item.links?.length ? 'div' : 'a'"
           v-for="item in column.items"
           :key="item.title"
-          :href="item.disabled ? undefined : item.href"
-          :target="item.disabled ? undefined : '_blank'"
-          :rel="item.disabled ? undefined : 'noreferrer'"
+          :href="item.disabled || item.links?.length ? undefined : item.href"
+          :target="item.disabled || item.links?.length ? undefined : '_blank'"
+          :rel="item.disabled || item.links?.length ? undefined : 'noreferrer'"
           class="wine-panel group border rounded-[8px] p-5 focus-visible:h-focus transition-colors"
           :class="item.disabled ? 'opacity-72' : 'hover:border-primary/70'"
           data-motion="card"
@@ -123,7 +127,20 @@ onUnmounted(() => {
           <p class="mt-3 text-muted-foreground">
             {{ item.description }}
           </p>
-          <div class="mt-6 flex items-center gap-2 text-sm text-muted-foreground font-700 transition-colors group-hover:text-foreground">
+          <div v-if="item.links?.length" class="mt-6 flex flex-wrap gap-2">
+            <a
+              v-for="link in item.links"
+              :key="link.label"
+              :href="link.href"
+              target="_blank"
+              rel="noreferrer"
+              class="wine-inset inline-flex h-9 items-center gap-2 border rounded-[8px] px-3 text-sm font-700 text-foreground transition-colors focus-visible:h-focus hover:border-primary"
+            >
+              {{ link.label }}
+              <ArrowDownToLine :size="15" />
+            </a>
+          </div>
+          <div v-else class="mt-6 flex items-center gap-2 text-sm text-muted-foreground font-700 transition-colors group-hover:text-foreground">
             {{ item.disabled ? '即将开放' : '打开文件' }}
             <ArrowDownToLine v-if="!item.disabled" :size="16" />
           </div>
