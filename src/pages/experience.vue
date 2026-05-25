@@ -5,19 +5,19 @@ import { Search } from 'lucide-vue-next'
 import { computed, ref } from 'vue'
 import { gameExperience } from '~/data/profile'
 
-const ALL_PLATFORM = '\u5168\u90E8'
-const PC_PLATFORM = 'PC\u6E38\u620F'
-const MOBILE_PLATFORM = '\u624B\u673A\u6E38\u620F'
+const ALL_PLATFORM = '全部'
+const PC_PLATFORM = '电脑游戏'
+const MOBILE_PLATFORM = '手机游戏'
 
 const copy = {
-  title: '\u6E38\u620F\u7ECF\u5386',
-  description: '\u6211\u73A9\u8FC7\u548C\u6301\u7EED\u89C2\u5BDF\u7684\u6E38\u620F\u5217\u8868\uFF0C\u53EF\u6309\u7C7B\u578B\u548C\u5173\u952E\u8BCD\u5FEB\u901F\u67E5\u8BE2\u3002',
-  searchPlaceholder: '\u641C\u7D22\u6E38\u620F\u540D\u3001\u7C7B\u578B\u6216\u5173\u952E\u8BCD',
-  pcTitle: 'PC\u6E38\u620F',
-  mobileTitle: '\u624B\u673A\u6E38\u620F',
-  totalTime: '\u603B\u65F6\u957F',
-  achievements: '\u6210\u5C31\u6570',
-  empty: '\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u6E38\u620F\u3002',
+  title: '游戏经历',
+  description: '我玩过和持续观察的游戏列表，可按类型和关键词快速查询。',
+  searchPlaceholder: '搜索游戏名、类型或关键词',
+  pcTitle: '电脑游戏',
+  mobileTitle: '手机游戏',
+  totalTime: '总时长',
+  achievements: '成就数',
+  empty: '没有找到匹配的游戏。',
 }
 
 const query = ref('')
@@ -45,7 +45,7 @@ function formatHours(hours?: number) {
   if (typeof hours !== 'number')
     return '--'
 
-  return `${Number.isInteger(hours) ? hours.toFixed(0) : hours.toFixed(1)}h`
+  return `${Number.isInteger(hours) ? hours.toFixed(0) : hours.toFixed(1)}小时`
 }
 
 function shouldShowHours(hours?: number) {
@@ -70,7 +70,7 @@ function achievementsLabel(game: GameExperienceItem) {
 }
 
 useHead({
-  title: '\u6E38\u620F\u7ECF\u5386 - LXR',
+  title: '游戏经历 - LXR',
 })
 </script>
 
@@ -79,7 +79,7 @@ useHead({
     <section class="container-page py-14 md:py-20" data-motion="section">
       <div data-motion="section-heading">
         <p class="eyebrow">
-          Experience
+          体验记录
         </p>
         <h1 class="mt-5 max-w-4xl text-[clamp(3rem,9vw,7.5rem)] font-680 leading-[0.9]">
           {{ copy.title }}
@@ -117,10 +117,10 @@ useHead({
       </div>
 
       <div v-if="filteredGames.length" class="space-y-10">
-        <section v-if="pcGames.length" aria-labelledby="pc-games-title">
-          <div class="mb-4">
+        <section v-if="pcGames.length" aria-labelledby="pc-games-title" data-motion="section" data-motion-skip-heading="true">
+          <div class="mb-4" data-motion="section-heading">
             <p class="eyebrow">
-              PC
+              电脑端
             </p>
             <h2 id="pc-games-title" class="mt-2 text-2xl font-650">
               {{ copy.pcTitle }}
@@ -132,7 +132,7 @@ useHead({
               v-for="game in pcGames"
               :key="game.title"
               class="game-experience-card pc-game-row grid grid-cols-[116px_minmax(0,1fr)] items-center gap-3 border-b border-primary/16 p-3 md:grid-cols-[180px_minmax(0,1fr)_108px] md:gap-4 last:border-b-0 md:p-4"
-              data-motion="card"
+              data-motion="row"
             >
               <div
                 class="game-cover-placeholder grid h-[76px] w-full place-items-center border rounded-[8px] px-3 text-center md:h-[96px]"
@@ -189,10 +189,10 @@ useHead({
           </div>
         </section>
 
-        <section v-if="mobileGames.length" aria-labelledby="mobile-games-title">
-          <div class="mb-4">
+        <section v-if="mobileGames.length" aria-labelledby="mobile-games-title" data-motion="section" data-motion-skip-heading="true">
+          <div class="mb-4" data-motion="section-heading">
             <p class="eyebrow">
-              Mobile
+              移动端
             </p>
             <h2 id="mobile-games-title" class="mt-2 text-2xl font-650">
               {{ copy.mobileTitle }}
@@ -206,7 +206,7 @@ useHead({
                   v-if="game.icon"
                   class="wine-image h-19 w-19 border border-primary/24 rounded-[8px] object-cover"
                   :src="game.icon"
-                  :alt="`${game.title} icon`"
+                  :alt="`${game.title}图标`"
                 >
                 <div
                   v-else
@@ -232,7 +232,7 @@ useHead({
         </section>
       </div>
 
-      <div v-else class="wine-panel border rounded-[8px] p-8 text-center text-muted-foreground">
+      <div v-else class="wine-panel border rounded-[8px] p-8 text-center text-muted-foreground" data-motion="card">
         {{ copy.empty }}
       </div>
     </section>
